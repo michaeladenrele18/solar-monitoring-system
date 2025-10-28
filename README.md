@@ -23,7 +23,7 @@ The goal of this project was to build an **accurate and safe sensing system** fo
 The system continuously monitors both **solar input** and **battery storage** voltages.  
 Data is processed on the Arduino and displayed locally, with the ESP32 reserved for future cloud logging.
 
-```text
+``
                +-----------------------------+
                |        Solar Panel          |
                +-----------------------------+
@@ -63,3 +63,36 @@ Data is processed on the Arduino and displayed locally, with the ESP32 reserved 
 
 Future Integration:
       └──► ESP32 → Cloud Dashboard → Remote Monitoring
+
+
+---
+
+## ⚡ Circuit Details
+
+### **Panel Voltage Divider**
+- Rtop = 100.2kΩ  
+- Rbot = 19.91kΩ (9.95k + 9.96k)  
+- Rseries = 1.005kΩ  
+- Scale Factor: **6.03265**
+
+### **Battery Voltage Divider**
+- Rtop = 100kΩ  
+- Rbot = 21.904kΩ (1.005k + 0.999k + 9.97k + 9.93k)  
+- Rseries = 0.998kΩ  
+- Scale Factor: **5.565376**
+
+Each node voltage feeds the Arduino’s analog pins (A1 for panel, A0 for battery).  
+Readings are stabilized using long ADC settling times due to high-impedance dividers.
+
+---
+
+## 💻 Code Features
+
+- **Long ADC Settling:** Multiple dummy reads + delay for high-impedance sources  
+- **Real-Time LCD Display:** Shows both panel and battery voltages  
+- **Serial Output:** Prints calibrated readings for data logging  
+- **Accurate Scaling:** Uses measured resistor values for precise conversion  
+- **Hardware Isolation:** Schottky diodes prevent voltage feedback through SAE connectors  
+
+---
+
