@@ -23,7 +23,7 @@ The goal of this project was to build an **accurate and safe sensing system** fo
 The system continuously monitors both **solar input** and **battery storage** voltages.  
 Data is processed on the Arduino and displayed locally, with the ESP32 reserved for future cloud logging.
 
-``
+```text
                +-----------------------------+
                |        Solar Panel          |
                +-----------------------------+
@@ -65,6 +65,7 @@ Future Integration:
       └──► ESP32 → Cloud Dashboard → Remote Monitoring
 
 
+```
 ---
 
 ## ⚡ Circuit Details
